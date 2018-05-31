@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container cgi">
+    <!-- 请求按钮 -->
+    <view class="list">
+        <view class="list-item" bindtap="token">
+            <text>获取access_token</text>
+        </view>
+        <view class="list-item">
+            <text class="request-text">期望输出：{ "access_token":"", "expires_in":7200 }</text>
+        </view>
+        <view class="list-item" wx:if="{{requestResult}}">
+            <text class="request-text">{{'请求结果：' + requestResult}}</text>
+        </view>
+    </view>
+
+</view>

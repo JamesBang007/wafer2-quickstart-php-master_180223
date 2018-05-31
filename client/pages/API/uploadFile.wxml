@@ -1,0 +1,23 @@
+<!--pages/API/uploadFile.wxml-->
+<view class="container">
+  <text>2018-05-24 文件上传</text>
+
+
+  <!-- 上传图片测试 -->
+  <view class="uploader">
+    <view class="uploader-text" bindtap="doUpload">
+      <text>上传图片</text>
+    </view>
+
+    <view class="uploader-container" wx:for="{{tempFiles}}">
+      <image class="uploader-image" src="{{item}}" mode="aspectFit"></image>
+    </view>
+
+
+    <view class="uploader-container" wx:if="{{imgUrl}}">
+      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view>
+
+
+</view>

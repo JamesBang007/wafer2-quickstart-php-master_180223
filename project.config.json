@@ -1,0 +1,50 @@
+{
+	"client": "./client",
+	"svr": "./server",
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "wxf27397bc89f88c4e",
+	"projectname": "wafer2-quickstart-php_180223",
+	"libVersion": "2.0.0",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "天气",
+					"pathName": "pages/weather/show",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "上传图片",
+					"pathName": "pages/API/uploadFile",
+					"query": ""
+				}
+			]
+		}
+	}
+}

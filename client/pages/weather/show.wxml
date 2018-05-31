@@ -1,0 +1,153 @@
+<!--pages/weather/show.wxml-->
+
+
+
+<block wx:if="{{showLoading}}">
+  <view class="h800">
+    <view class="loading">加载中…</view>
+  </view>
+</block>
+<block wx:else>
+
+
+
+  <view id="sec-main" class="container {{weatherData.l+' '+isDay}}">
+    <view id="btn-voice" class="{{voice?'voice-playing':'voice-pause'}}"></view>
+    <!--<view id="btn-share"></view>-->
+    <view id="txt-location" bind:tap="locationOn">
+      <view id="icon-location"></view>{{handleLocation}}</view>
+    <view id="ct-pub">
+      <text class="txt hide">中央气象台 15:15发布</text>
+    </view>
+    <view id="txt-temperature" class="positive">{{weatherData.observe.degree}}</view>
+    <view id="txt-weather">{{weatherData.observe.weather}}</view>
+    <view id="ct-wind-humidity">
+      <text class="txt">北风 2级</text>
+      <text class="show txt">湿度 {{weatherData.observe.humidity}}%</text>
+    </view>
+    <view id="txt-tips">{{weatherData.tips.observe[0]}}~</view>
+    <view id="txt-tips">{{weatherData.tips.observe[1]}}~</view>
+
+    <!--bg-->
+    <view id="ct-landscape">
+      <view class="layer" id="layer1" style="transform: translate3d(0px, 0px, 0px);"></view>
+      <view class="layer" id="layer2" style="transform: translate3d(0px, 0px, 0px);"></view>
+      <view class="layer" id="layer3" style="transform: translate3d(0px, 0px, 0px);"></view>
+    </view>
+    <view class="ct-aqi level{{weatherData.air.aqi_level}}" data-boss="aqi">
+      <view id="til">{{weatherData.air.aqi}}</view>
+      <view id="value">{{weatherData.air.aqi_name}}</view>
+    </view>
+  </view>
+  <!--
+<view id="sec-tomorrow" class="container">
+    <view class="item">
+        <view class="top">
+            <view class="date">今天</view>
+            <view class="temperature">28/20°</view>
+        </view>
+        <view class="bottom">
+            <view class="weather">明天</view>
+            <image src="http://mat1.gtimg.com/pingjs/ext2020/weather/mobile2.0/assets/weather/day/01.svg" class="logo"></image>
+        </view>
+    </view>
+    <view class="item">
+        <view class="top">
+            <view class="date">今天</view>
+            <view class="temperature">28/20°</view>
+        </view>
+        <view class="bottom">
+            <view class="weather">多云</view>
+            <image src="http://mat1.gtimg.com/pingjs/ext2020/weather/mobile2.0/assets/weather/day/01.svg" class="logo"></image>
+        </view>
+    </view>
+</view>
+-->
+  <!--
+<view id="sec-hours" class="container">
+    <view id="ct-scroll" style="width: 400%;">
+        <view id="ls-hours-weather">
+            <view class="item" wx:for="{{weatherData.forecast_1h}}" wx:key="forecast_1h" style="display:{{ index>7 & index<32 ? 'block':'none'}}">
+                <view class="txt-time">{{ index>24 ? index-24 : index }}:00</view>
+                <image src="http://mat1.gtimg.com/pingjs/ext2020/weather/mobile2.0/assets/weather/day/{{item.weather_code}}.svg" class="icon"></image>
+                <view class="txt-degree positive">{{item.degree}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+-->
+  <view id="sec-days" class="container">
+    <view id="ct-scroll">
+      <view id="ls-days">
+        <view class="item" wx:for="{{weatherData.forecast_24h}}" wx:key="forecast_24h">
+          <view class="day">{{item.sDay}}</view>
+          <view class="date">{{item.sDate}}</view>
+          <view class="ct-daytime">
+            <view class="weather">{{item.day_weather}}</view>
+            <image src="http://mat1.gtimg.com/pingjs/ext2020/weather/mobile2.0/assets/weather/day/{{ item.day_weather_code}}.svg" class="icon"></image>
+          </view>
+          <view class="ct-night">
+            <image src="http://mat1.gtimg.com/pingjs/ext2020/weather/mobile2.0/assets/weather/night/{{ item.night_weather_code}}.svg" class="icon"></image>
+            <view class="weather">{{item.night_weather}}</view>
+          </view>
+          <view class="wind">{{item.day_wind_direction}}</view>
+          <view class="wind">{{item.day_weather}}级</view>
+        </view>
+      </view>
+      <div id="ct-chart-days">
+        <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+      </div>
+    </view>
+  </view>
+
+
+
+  <!--
+<view id="sec-living" class="container">
+    <view id="living-scroll">
+        <view class="react-swipe-container" style="overflow: hidden; visibility: visible; position: relative;">
+        <view style="overflow: hidden; position: relative; width: 200%;">
+            <view class="ls-living" style="float: left; width: 50%; position: relative; transition-property: transform; left: 0px; transition-duration: 300ms; transform: translate(0px, 0px) translateZ(0px);" data-index="0">
+                <block wx:for="{{weatherData.index}}" wx:key="indexData" wx:for-index="ind">
+                <view class="item" data-boss="shzs">                    
+                    <view class="icon icon_chuanyi_shushi {{ind}}"></view>
+                    <text class="content">{{item.info}}</text>
+                    <text class="title">{{item.name}}</text>
+                </view>
+                </block>
+            </view>
+        </view>
+        </view>
+    </view>
+</view>
+-->
+
+  <!-- 搜索 -->
+  <view id="sec-loaction" class="container {{loactionOn}}">
+    <view id="ct-search">
+      <view id="btn-cancel" bind:tap="loactionCancel">取消</view>
+      <view id="ct-input">
+        <view id="icon-search"></view>
+        <input type="text" id="i-location" placeholder="搜索地区/景点" value="" />
+      </view>
+    </view>
+    <view id="ct-hot-city">
+      <view id="ct-history">
+        <view href="javascript:;" id="btn-clean"></view>
+        <view class="title">历史记录</view>
+        <view class="ls-city">
+          <view class="opt city ">成都大熊猫繁育研究基地</view>
+        </view>
+      </view>
+      <view class="title">热门城市</view>
+      <view class="ls-city" bind:tap="tapCity">
+        <view class="opt city" data-province="{{item.province}}" data-city="{{item.city}}" wx:for="{{internal}}" wx:key="internal">{{item.city}}</view>
+      </view>
+      <view class="title">热门景区</view>
+      <view class="ls-city" bind:tap="tapTourist">
+        <view class="opt spot" data-place="{{item[1]}}" wx:for="{{tourist}}" wx:key="tourist">{{item[0]}}</view>
+      </view>
+    </view>
+  </view>
+
+</block>

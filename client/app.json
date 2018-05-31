@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/addCgi/addCgi",
+    "pages/addCgi/token",
+    "pages/API/template-message",
+    "pages/API/http2https",
+    "pages/API/uploadFile",
+    "pages/weather/show",
+    "pages/addCgi/mydata"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "Wafer Quick Start",
+    "navigationBarTextStyle": "black"
+  }
+}
